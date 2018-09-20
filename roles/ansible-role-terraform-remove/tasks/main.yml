@@ -1,0 +1,8 @@
+---
+# tasks file for ansible-role-terraform-remove
+
+- name: Remove consul binary
+  file:
+    path: "{{ terraform_bin_path }}/terraform"
+    state: absent
+
