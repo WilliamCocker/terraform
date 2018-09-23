@@ -27,11 +27,11 @@ Running the playbook
 
 __To install__
 
-`ansible-playbook terraform.yml`
+`ansible-playbook playbooks/terraform.yml`
 
 __To remove__
 
-`ansible-playbook terraform.yml --tags 'remove'`
+`ansible-playbook playbooks/terraform.yml --tags 'remove'`
 
 License
 -------
