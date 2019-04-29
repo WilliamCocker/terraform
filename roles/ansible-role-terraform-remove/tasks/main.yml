@@ -1,8 +1,24 @@
 ---
 # tasks file for ansible-role-terraform-remove
 
+- name: Remove terraform command autocompletion
+  command: terraform -uninstall-autocomplete
+  become: true
+  become_user: "{{terraform_user}}"
+  ignore_errors: yes
+
 - name: Remove terraform binary
   file:
     path: "{{ terraform_bin_path }}/terraform"
+    state: absent
+
+- name: Remove terraform LXD plugin
+  file:
+    path: "{{ terraform_bin_path }}/terraform-provider-lxd_v{{lxd_plugin_version}}_x4"
+    state: absent
+
+- name: Remove terraform LXD plugin link from user search path
+  file:
+    path: "/home/{{terraform_user}}/.terraform.d/plugins/terraform-provider-lxd_v{{lxd_plugin_version}}_x4"
     state: absent
 
