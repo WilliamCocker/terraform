@@ -1,0 +1,8 @@
+---
+# defaults file for ansible-role-lxd-init
+
+lxd_dependencies:
+  - btrfs-tools
+  - lxd
+lxd_temp_dir: /opt/lxd_temp
+

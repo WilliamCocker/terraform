@@ -1,0 +1,37 @@
+---
+# tasks file for ansible-role-lxd-init
+
+- name: Install dependencies
+  package:
+    name: "{{ lxd_dependencies }}"
+    state: present
+
+- name: Create LXD temp directory
+  file:
+    path: "{{lxd_temp_dir}}"
+    state: directory
+    owner: root
+    group: root
+  register: lxd_temp_directory
+
+- name: Place lxd config file
+  template:
+    src: lxd_init_preseed.txt.j2
+    dest: "{{lxd_temp_dir}}/lxd_init_preseed.txt"
+    owner: root
+    group: root
+    mode: 0770
+  register: lxd_init_preseed
+
+- name: Place lxd config script
+  template:
+    src: lxd_init.sh.j2
+    dest: "{{lxd_temp_dir}}/lxd_init.sh"
+    owner: root
+    group: root
+    mode: 0770
+  register: lxd_init_script
+
+- name: Configure lxd init
+  command: "{{lxd_temp_dir}}/lxd_init.sh"
+  when: lxd_init_script is changed

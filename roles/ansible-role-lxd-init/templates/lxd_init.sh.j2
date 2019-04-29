@@ -1,0 +1,2 @@
+#!/bin/bash
+cat {{lxd_temp_dir}}/lxd_init_preseed.txt | /usr/bin/lxd init --preseed > {{lxd_temp_dir}}/lxd_init.log 2>&1
