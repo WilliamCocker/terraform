@@ -66,3 +66,33 @@
     mode: 0755
     keep_newer: true
 
+- name: Configure terraform command autocompletion
+  command: terraform -install-autocomplete
+  become: true
+  become_user: "{{terraform_user}}"
+  ignore_errors: yes
+
+- name: Download terraform lxd plugin Linux 64 bits
+  get_url:
+    url: https://github.com/sl1pm4t/terraform-provider-lxd/releases/download/v{{ lxd_plugin_version }}/terraform-provider-lxd_v{{ lxd_plugin_version }}_linux_amd64.zip
+    dest: /tmp/terraform-lxd-plugin-v{{lxd_plugin_version}}.zip
+
+- name: Create LXD plugin directory
+  file:
+    path: /home/{{terraform_user}}/.terraform.d/plugins/
+    state: directory
+    owner: "{{terraform_user}}"
+    group: "{{terraform_user}}"
+
+- name: Unarchive LXD plugin archive
+  unarchive:
+    src: /tmp/terraform-lxd-plugin-v{{lxd_plugin_version}}.zip
+    dest: "{{ terraform_bin_path }}"
+    copy: no
+
+- name: Adding LXD plugin to user path
+  file:
+    src: "{{ terraform_bin_path }}/terraform-provider-lxd_v{{lxd_plugin_version}}_x4"
+    dest: /home/{{terraform_user}}/.terraform.d/plugins/terraform-provider-lxd_v{{lxd_plugin_version}}_x4
+    state: link
+
