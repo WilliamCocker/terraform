@@ -7,6 +7,5 @@ checkpoint_url: "https://checkpoint-api.hashicorp.com/v1/check/terraform"
 terraform_dependencies:
   - unzip
 terraform_bin_path: "/usr/bin"
-terraform_dir: /opt/terraform
 terraform_user: deploy
 lxd_plugin_version: 1.1.3
