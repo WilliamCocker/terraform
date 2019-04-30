@@ -1,7 +1,7 @@
 Hashicorp Terraform & LXD provider
 ==================================
 
-Installs Terraform by Hashicorp (latest version & linux_amd64 architecture by default & LXD provider)
+Installs Terraform by Hashicorp (latest version & linux_amd64 architecture by default & LXD provider)  
 Can also initialize a fresh LXD install (see ansible-role-lxd-init)
 
 Currently tested on these Operating Systems
