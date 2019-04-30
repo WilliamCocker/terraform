@@ -3,10 +3,12 @@ Role : ansible-role-terraform-remove
 
 Removes Hashicorp's Terraform by
 * Deleting the terraform binary from terraform_bin_path (default: /usr/bin)
+* Deleting the LXD provider from the terraform_bin_path (default: /usr/bin)
+* Deleting the link to the LXD provider from the (non root) user's path
+* Removing Terraform autocompletion from the (non root) user's bash configuration
 
 Currently tested on these Operating Systems
-* Oracle Linux/RHEL/CentOS 7
-* Debian/Stretch64
+* Ubuntu Server 18.04.2 LTS 64-bits with LXD v3.0.3 LTS (not the Snap packaged version)
 
 Requirements
 ------------
@@ -49,5 +51,5 @@ MIT License
 Author Information
 ------------------
 
-Adam Goldsmith
+Adam Goldsmith & William Cocker (for LXD provider specific code)
 
