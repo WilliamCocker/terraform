@@ -8,4 +8,5 @@ terraform_dependencies:
   - unzip
 terraform_bin_path: "/usr/bin"
 terraform_user: deploy
-lxd_plugin_version: 1.1.3
+lxd_plugin_version: 1.2.0
+
